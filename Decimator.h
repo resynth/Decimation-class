@@ -17,22 +17,12 @@ public:
 		void cleanup();
 	
 private:
-		ne10_fir_decimate_instance_f32_t			firFilter;				
-	
-		ne10_float32_t *  							source = nullptr;		// points to input block
-		ne10_float32_t *  							destiny = nullptr;		// points to output block
-		ne10_uint32_t  								blockSize;				// samples processed per call
-		ne10_uint8_t								factor;						
-		ne10_uint16_t								numTaps;			
-		ne10_float32_t*								firFilterCoeff;			
-		ne10_float32_t*								firFilterState;			// Points to the state variable array of length numTaps+maxBlockSize-1
-	
-	/*	
-		ne10_fir_decimate_instance_f32_t			firFilter
-		{
-			ne10_uint8_t 								M 						//Decimation Factor
-			ne10_uint16_t 								numTaps
-			ne10_float32_t* 							firFilterCoeff = nullptr;
-			ne10_float32_t* 							firFilterState = nullptr;
-		}*/
+		ne10_fir_decimate_instance_f32_t	firFilter;	
+		ne10_float32_t *  					source = nullptr;		
+		ne10_float32_t *  					destiny = nullptr;		
+		ne10_uint32_t  						blockSize;				
+		ne10_uint8_t						factor;						
+		ne10_uint16_t						numTaps;			
+		ne10_float32_t*						firFilterCoeff;			
+		ne10_float32_t*						firFilterState;	// Points to state variable array of length numTaps+maxBlockSize-1
 };
