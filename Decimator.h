@@ -22,8 +22,7 @@ private:
 	ne10_float32_t *  					destiny = nullptr;		
 	ne10_uint32_t  						blockSize;				
 	ne10_uint8_t						factor;						
-	ne10_uint16_t						numTaps = 117;			
-	//ne10_float32_t*						firFilterCoeff;			
+	ne10_uint16_t						numTaps = 117;		
 	ne10_float32_t*						firFilterState;	// Points to state variable array of length numTaps+maxBlockSize-1
 
 	ne10_float32_t firFilterCoeff[117] = { // tfilter, 10000 3db, 11000 -96db, 117 taps
