@@ -5,24 +5,24 @@
 #include <string>
 #include <algorithm>
 
+// Example usage of Decimator.  Filters and downsamples mono audio input.  Saves output to file.
+
 Decimator decimator;
 std::vector<float> gInBuf;
 std::vector<float> gOutBuf;
-const int gFactor = 2;
+const int gFactor = 2;		// Can be 2 or 4. Based on this: Decimator setup selects the appropriate filter coeffs. The decimate function automatically discards the unneeded samples 
 
-unsigned int gOutSampRate = 22050;
-const double gDurationSec = 20; // how many seconds to record.
+// AudioFile write vars
+unsigned int gOutSampRate = 44100 / gFactor;
+const double gDurationSec = 60; // how many seconds to record.
 std::vector<std::vector<float>> gFileBuf(1, std::vector<float>(gOutSampRate * gDurationSec, 0));
-
 std::string gOutFile = "decimator.wav";
 unsigned int gOutFrames;
 unsigned int gWrittenFrames = 0; // how many frames written to gOutBuf
 
-
 bool setup(BelaContext *context, void *userData)
 {
 	unsigned int numFrames = gOutSampRate * gDurationSec;
-	
 	gFileBuf.resize(1);
 	try {
 		for(auto& c : gFileBuf)
@@ -38,7 +38,6 @@ bool setup(BelaContext *context, void *userData)
 	gOutBuf.resize(context->audioFrames / gFactor);
 	
 	gOutFrames = context->audioFrames / gFactor;
-	gOutSampRate = context->audioSampleRate / gFactor;
 	
 	return true;
 }
